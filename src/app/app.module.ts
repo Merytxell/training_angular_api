@@ -14,6 +14,7 @@ import { TrainingComponent } from './components/training/training.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AdminComponent } from './components/admin/admin.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,8 @@ import { AdminComponent } from './components/admin/admin.component';
     OrderComponent,
     LoginoutComponent,
     TrainingComponent,
-    AdminComponent
+    AdminComponent,
+   
   ],
   imports: [
     BrowserModule,

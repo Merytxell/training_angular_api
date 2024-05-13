@@ -4,6 +4,7 @@ export class Training {
     description : string;
     price : number;
     quantity : number;
+    categoryId: number | undefined;
 
     constructor(id:number,name:string,description:string,price:number, quantity:number) {
         this.id = id;

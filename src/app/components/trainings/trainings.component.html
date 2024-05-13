@@ -1,4 +1,17 @@
 <div class="container">
+    <h2>Liste des catégories</h2>
+    <ng-container *ngIf="category; else loading">
+      <ul class="nav">
+        <li class="nav-item" *ngFor="let category of category" (click)="onCategoryClick(category)">
+          <a class="nav-link active" aria-current="page">{{ category.name }}</a>
+        </li>
+      </ul>
+    </ng-container>
+    <ng-template #loading>
+      <div>Loading...</div>
+    </ng-template>
+  </div>
+  <div class="container">
     <ng-container *ngIf="listTrainings else loading">
         <table class="table table-striped">
             <thead>
@@ -18,10 +31,10 @@
                             <i class="fa fa-shopping-cart"></i> Ajouter
                         </a>                        
                     </td>
-                    <td *ngIf="this.authService.isAdmin()"> 
+                    <!-- <td *ngIf="this.authService.isAdmin()"> 
                         <a class="btn btn-outline-danger btn-sm" (click)="onDeleteTraining(training)"> Supprimer </a></td>
                     <td *ngIf="this.authService.isAdmin()"> 
-                        <a class="btn btn-outline-secondary btn-sm" (click)="onUpdateTraining(training)"> Mise à jour </a></td>
+                        <a class="btn btn-outline-secondary btn-sm" (click)="onUpdateTraining(training)"> Mise à jour </a></td> -->
                 </tr>
             </tbody>
         </table>    

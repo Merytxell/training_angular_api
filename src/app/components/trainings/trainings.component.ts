@@ -4,6 +4,7 @@ import { CartService } from 'src/app/services/cart.service';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
+import { Category } from 'src/app/model/category.models';
 
 @Component({
   selector: 'app-trainings',
@@ -19,6 +20,8 @@ import { AuthenticateService } from 'src/app/services/authenticate.service';
 export class TrainingsComponent implements OnInit {
   listTrainings : Training[] | undefined;
   error = null;
+  category: Category[] | undefined;
+ 
   
   constructor(private cartService : CartService, private router : Router, 
     private apiService : ApiService, public authService : AuthenticateService) {
@@ -26,6 +29,7 @@ export class TrainingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllTrainings();
+    this.getCategory();
   }
 
   /**
@@ -74,6 +78,18 @@ export class TrainingsComponent implements OnInit {
   onUpdateTraining(training : Training){
     this.router.navigateByUrl('training/' + training.id);
   }
+
+  getCategory ():void {
+    this.apiService.getCategory().subscribe(category => this.category = category )
+  }
+  onCategoryClick(category : Category): void {
+    console.log("bonjour");
+  
+    this.apiService.getTrainingsByCategory(category.id).subscribe(
+     data => this.listTrainings= data
+    );
+  }
+
 }
 
 
